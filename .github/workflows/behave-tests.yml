@@ -25,7 +25,9 @@ jobs:
         pip install behave==1.3.3 selenium webdriver-manager
         
     - name: Run Behave Smoke Tests
-      run: behave -t "@smoke" --format progress2
+      run: |
+        mkdir -p reports
+        behave -t "@smoke" --format json --outfile reports/behave_report.json
       
     - name: Upload Test Results
       if: always()

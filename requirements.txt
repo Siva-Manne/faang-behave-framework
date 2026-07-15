@@ -1,0 +1,7 @@
+behave>=1.2.6
+selenium>=4.15.0
+pytest>=7.4.0
+allure-behave>=2.13.2
+requests>=2.31.0
+psycopg2-binary>=2.9.9
+python-dotenv>=1.0.0

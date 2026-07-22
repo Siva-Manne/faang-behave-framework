@@ -32,4 +32,9 @@ class LoginPage:
             return None
 
     def is_visible(self):
+        self.wait.until(EC.alert_is_present())
+        alert = self.driver.switch_to.alert
+        alert.accept()
+        # Wait for page to load and check if the login form is visible
+        self.wait.until(EC.visibility_of_element_located(self.LOGIN_BUTTON)).is_displayed()
         return self.driver.current_url == self.URL

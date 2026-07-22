@@ -39,7 +39,7 @@ def step_impl(context, password):
 @when('the user logs out')
 def step_impl(context):
     """Day 8: Calls DashboardPage.logout()"""
-    # TODO Day 8: 
+    # TODO Day 8:    
     context.dashboard_page.logout()
     pass
 

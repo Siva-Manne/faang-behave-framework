@@ -10,9 +10,15 @@ from allure import attachment_type
 
 
 def before_scenario(context, scenario):
+  
     options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")  
-    # Set up the Selenium WebDriver
+    options.add_argument("--start-maximized")
+    if os.getenv("CI"):
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")  
+    # if need to Set up the Selenium WebDriver path from local location
     #service = Service(executable_path="path/to/chromedriver")  # Replace with the actual path to your ChromeDriver executable
     context.driver = webdriver.Chrome(options=options)  # You can change this to Firefox or any other browser
     

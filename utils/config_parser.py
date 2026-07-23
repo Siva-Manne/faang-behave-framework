@@ -11,13 +11,12 @@ class ConfigReader:
             env = context.config.userdata.get('env', 'dev')  # Default to 'dev' if not provided
         
             ConfigReader._config = configparser.ConfigParser()
-            #get root path of the project
+            # get root path of the project
             root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            config_path = os.path.join(root_path, f'config\\{env}.ini')
+            config_path = os.path.join(root_path, 'config', f'{env}.ini')
             
             if not os.path.exists(config_path):
                 raise FileNotFoundError(f"Config file not found: {config_path}")
-            
             
             ConfigReader._config.read(config_path)
             print(f"✅ Running tests with {env.upper()} config")
@@ -36,7 +35,8 @@ class ConfigReader:
 
     @staticmethod
     def is_headless(context):
-        return ConfigReader.get_config(context)['default'].getboolean('HEADLESS', fallback=False)
+        config = ConfigReader.get_config(context)
+        return config.getboolean('default', 'HEADLESS', fallback=False)
     
     @staticmethod
     def get_implicit_wait(context):

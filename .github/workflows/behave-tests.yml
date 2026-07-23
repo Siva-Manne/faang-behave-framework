@@ -4,8 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    # Runs every day at 3 AM UTC = 8:30 AM IST
-    - cron: '0 3 *'
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
       env:
@@ -14,9 +13,9 @@ on:
         default: 'qa'
         type: choice
         options:
-        - dev
-        - qa
-        - uat
+          - dev
+          - qa
+          - uat
       tags:
         description: 'Behave tags'
         required: false

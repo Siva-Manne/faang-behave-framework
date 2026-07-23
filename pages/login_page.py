@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class LoginPage:
+class LoginPage:    
+   
     URL = "https://www.saucedemo.com/"  # Replace with the actual login page URL
     def __init__(self, driver):
         self.driver = driver
@@ -15,8 +16,10 @@ class LoginPage:
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_MESSAGE = (By.CSS_SELECTOR, "h3[data-test='error']")
     
-    def open(self):
-        self.driver.get(self.URL)
+    def open(self, base_url= None):
+        if base_url is None:
+            base_url = self.URL
+        self.driver.get(base_url)  # Use the base URL from config or default to the class URL   
         
     def login(self, username, password):
         self.driver.find_element(*self.USERNAME_INPUT).clear()

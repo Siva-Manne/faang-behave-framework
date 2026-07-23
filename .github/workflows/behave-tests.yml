@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Behave Tests
         run: |
-          behave -t "smoke" -f allure_behave.formatter:AllureFormatter -o reports/allure-results
+          behave -D env=qa -t "smoke" -f allure_behave.formatter:AllureFormatter -o reports/allure-results
 
       - name: Generate Allure Report
         run: |

@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
             "module": "behave",
-            "args": ["--tags=smoke","features/login/login.feature"],
+            "args": ["-D env=qa","--tags=smoke","features/login/login.feature"],
             "cwd": "${workspaceFolder}"
         },
         {
@@ -38,6 +38,30 @@
                 "features/login.feature:22"
             ],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Allure: Generate Report",
+            "type": "python",
+            "request": "launch",
+            "module": "subprocess",
+            "args": [
+                "-c",
+                "subprocess.run(['C:/allure/bin/allure.bat', 'generate', './reports/allure-results', '-o', './reports/allure-report', '--clean'], check=True)"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Allure: Open Report",
+            "type": "python",
+            "request": "launch",
+            "module": "subprocess",
+            "args": [
+                "-c",
+                "subprocess.run(['C:/allure/bin/allure.bat', 'open', './reports/allure-report'], check=True)"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
         }
     ]
 }

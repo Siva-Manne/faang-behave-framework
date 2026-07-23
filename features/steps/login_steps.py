@@ -15,7 +15,7 @@ def step_impl(context, password):
 def step_impl(context):
     """Day 8: This will call LoginPage.login()"""
     # TODO Day 8: Use Page Object to log in via UI
-    context.login_page.open()
+    context.login_page.open(context.base_url)
     context.login_page.login(context.valid_user, context.valid_pass)
     assert context.dashboard_page.is_visible()
    

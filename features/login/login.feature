@@ -10,7 +10,7 @@ Feature: User Authentication
   Scenario: Successful login with valid credentials
     When the user logs in with valid credentials
     Then the user sees their account dashboard
-    And the user sees a welcome message
+    And the user redirects to the dashboard page
 
   @auth @negative
   Scenario: Failed login with wrong password

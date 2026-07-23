@@ -1,0 +1,67 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File with Arguments",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": ["-D env=qa","--tags=smoke","features/login/login.feature"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Behave: Run Current Feature",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": [
+                "features/login/login.feature"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "CI": ""
+            }
+        },
+        {
+            "name": "Behave: Debug Failing Scenario 22",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": [
+                "features/login.feature:22"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Allure: Generate Report",
+            "type": "python",
+            "request": "launch",
+            "module": "subprocess",
+            "args": [
+                "-c",
+                "subprocess.run(['C:/allure/bin/allure.bat', 'generate', './reports/allure-results', '-o', './reports/allure-report', '--clean'], check=True)"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Allure: Open Report",
+            "type": "python",
+            "request": "launch",
+            "module": "subprocess",
+            "args": [
+                "-c",
+                "subprocess.run(['C:/allure/bin/allure.bat', 'open', './reports/allure-report'], check=True)"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

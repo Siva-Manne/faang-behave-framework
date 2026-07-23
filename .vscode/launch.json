@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File with Arguments",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": ["--tags=smoke","features/login/login.feature"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Behave: Run Current Feature",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": [
+                "features/login/login.feature"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "CI": ""
+            }
+        },
+        {
+            "name": "Behave: Debug Failing Scenario 22",
+            "type": "python",
+            "request": "launch",
+            "module": "behave",
+            "args": [
+                "features/login.feature:22"
+            ],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

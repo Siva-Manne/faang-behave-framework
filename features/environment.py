@@ -13,6 +13,17 @@ def before_scenario(context, scenario):
   
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
+    options.add_argument("--disable-features=PasswordCheck,PasswordManagerOnboarding")
+    options.add_argument("--disable-popup-blocking")
+    options.add_argument("--incognito")
+    options.add_argument("--profile-directory=Default")
+
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False,
+    }
+    options.add_experimental_option("prefs", prefs)
     if os.getenv("CI"):
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")

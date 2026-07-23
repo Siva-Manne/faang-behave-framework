@@ -1,0 +1,5 @@
+{
+  "cucumber.features": ["features/**/*.feature"],
+  "cucumber.steps": ["features/steps/**/*.py"],
+  "cucumber.gherkinFlow": true
+}

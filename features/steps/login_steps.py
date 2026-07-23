@@ -18,7 +18,7 @@ def step_impl(context):
     context.login_page.open()
     context.login_page.login(context.valid_user, context.valid_pass)
     assert context.dashboard_page.is_visible()
-    pass
+   
 
 @when('the user logs in with valid credentials')
 def step_impl(context):

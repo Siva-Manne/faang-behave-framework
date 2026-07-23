@@ -1,3 +1,4 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -23,6 +24,7 @@ class LoginPage:
         self.driver.find_element(*self.PASSWORD_INPUT).clear()
         self.driver.find_element(*self.PASSWORD_INPUT).send_keys(password)
         self.driver.find_element(*self.LOGIN_BUTTON).click()
+        self.handle_change_password_popup()  # Handle the popup after clicking login
         
     def error_message(self):
         try:
@@ -32,9 +34,16 @@ class LoginPage:
             return None
 
     def is_visible(self):
-        self.wait.until(EC.alert_is_present())
-        alert = self.driver.switch_to.alert
-        alert.accept()
         # Wait for page to load and check if the login form is visible
         self.wait.until(EC.visibility_of_element_located(self.LOGIN_BUTTON)).is_displayed()
         return self.driver.current_url == self.URL
+    
+    def handle_change_password_popup(self):
+       
+        try:
+            return
+            # ok_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='OK']")))
+            # ok_button.click()
+            # print("Closed Chrome password popup")
+        except TimeoutException:
+            pass # Popup didn't appear, continue

@@ -21,7 +21,6 @@ class DashboardPage:
     def welcome_text(self):
         return self.wait.until(EC.visibility_of_element_located(self.PAGE_TITLE)).text
     
-    def logout(self):
-        
+    def logout(self):        
         self.driver.find_element(*self.MENU_BUTTON).click()
         self.wait.until(EC.element_to_be_clickable(self.LOGOUT_LINK)).click()

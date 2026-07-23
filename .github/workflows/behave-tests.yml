@@ -1,6 +1,26 @@
 name: Behave Tests
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment to run'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - dev
+          - qa
+          - uat
+      tags:
+        description: 'Behave tags'
+        required: false
+        default: 'smoke'
+        type: string
 
 permissions:
   contents: read
@@ -36,7 +56,9 @@ jobs:
 
       - name: Run Behave Tests
         run: |
-          behave -D "env=qa" -t "smoke" -f allure_behave.formatter:AllureFormatter -o reports/allure-results
+          ENV=${{ github.event.inputs.env || 'qa' }}
+          TAGS=${{ github.event.inputs.tags || 'smoke' }}
+          behave -D "env=$ENV" -t "$TAGS" -f allure_behave.formatter:AllureFormatter -o reports/allure-results
 
       - name: Generate Allure Report
         run: |
